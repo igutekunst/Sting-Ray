@@ -12,9 +12,9 @@ public:
 	RTtexture texture;
 	RTVector center;
 	double radius;
-	virtual bool intersects(RTRay ray, double & t);
+	bool intersects(RTRay ray, double & t);
 	RTAppearance getAppearance(RTVector pt);
-	RTVector RTSphere::getIntersection(double t);
+	RTVector getIntersection(double t);
 	RTVector getCenter( );
 	RTVector getNormal(RTVector point);
 

@@ -5,7 +5,6 @@
 #include <time.h>
 
 #include <iostream>
-#include <Windows.h>
 #include <fstream>
 
 #include "RTColor.h"
@@ -23,12 +22,10 @@
 #define h 1000
 #define sw w
 #define sh h
-    int key;
+int key;
 int old[w][h];
 int newBoard[w][h];
 int big_pixel = 10;
-int x;
-int y;
 int paused;
 int width = sw;
 int height = sh;
@@ -332,21 +329,13 @@ RTColor trace(RTRay viewRay)
 
 int main(int argc, char *argv[])
 {
-	std::ofstream myfile;
-	myfile.open ("debug.txt");
 	
 	RTMatrix a = RTMatrix(0,2,1,1,
 						4,1,2,7,
 						4,5,2,1,
 						7,8,2,5);
-	 OutputDebugString("\n\n\n\n\n");
+    std::cout << "Hello bitches\n";
 	 RTMatrix b = a.inverse();
-		for(int i =0; i<4;i++){
-		for(int j = 0; j<4;j++){
-			myfile << b.mat[i][j] << " ";
-		}
-		myfile << "\n";
-		}
  SDL_Surface *surface;
 
 
@@ -369,17 +358,19 @@ int main(int argc, char *argv[])
 	const double dim = .3;
 	const double bright = .7;
 
-	RTtexture mirror(dark,.99,.99);
+	RTtexture mirror(blue,.99,.99);
 
-	sceneObjects[0] = RTSphere(RTVector(250,250,0),250,RTtexture(blue,0,0)); sceneObjects[2] = RTSphere(RTVector(750,250,0),250,RTtexture(white,0,0));
+	sceneObjects[0] = RTSphere(RTVector(250,250,0),250, mirror); sceneObjects[2] = RTSphere(RTVector(750,250,0),250, mirror);
 	sceneObjects[1] = RTSphere(RTVector(250,750,0),250,RTtexture(white,0,0)); sceneObjects[3] = RTSphere(RTVector(750,750,0),250,RTtexture(white,0,0));
 	
+	sceneObjects[4] = RTSphere(RTVector(250,250,4000),250, mirror); sceneObjects[5] = RTSphere(RTVector(750,250,400),250, mirror);
+	sceneObjects[6] = RTSphere(RTVector(250,750,4000),250,RTtexture(white,0,0)); sceneObjects[7] = RTSphere(RTVector(750,750,400),250,RTtexture(white,0,0));
 	
 	sceneObjects[4] = RTSphere(RTVector(500,500,0),100,RTtexture(white,0,0));
-	numObjects = 4;
+	numObjects = 8;
 	numLights=2;
-	lights [0] = RTPointLight(RTVector(500,3000,-100),red,bright);
-	lights [1] = RTPointLight(RTVector(1000,500,-400),green,bright);
+	lights [0] = RTPointLight(RTVector(100, 1000, -1000), white, bright);
+	lights [1] = RTPointLight(RTVector(100, 500, -4000), green, bright);
 
     surface = SDL_SetVideoMode(sw, sh, 32, SDL_SWSURFACE);
     if ( surface == NULL ) {
@@ -432,7 +423,6 @@ while(1){
                        
                 break;
             case SDL_QUIT:
-                myfile.close();
 				exit(0);
 
         }

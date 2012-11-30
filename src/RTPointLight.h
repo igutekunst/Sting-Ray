@@ -1,5 +1,5 @@
 #pragma once
-#include "rtlight.h"
+#include "RTLight.h"
 class RTPointLight :
 	public RTLight
 {

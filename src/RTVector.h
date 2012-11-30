@@ -3,8 +3,8 @@
 class RTVector
 {
 public:
-	double x;
-	double y;
+    double x;
+    double y;
 	double z;
 	double r;
 	double theta;

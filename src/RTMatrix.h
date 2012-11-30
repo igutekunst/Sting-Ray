@@ -13,11 +13,11 @@ public:
 			 double c0, double c1, double c2, double c3,
 			 double d0, double d1, double d2, double d3);
 	//construct a transformation matrix from the three axis of the target space
-	RTMatrix::RTMatrix(RTVector xAxis, RTVector yAxis, RTVector zAxis,RTVector newOrigin);
+	RTMatrix(RTVector xAxis, RTVector yAxis, RTVector zAxis,RTVector newOrigin);
 
 	// transformation of position vector
 	static RTVector multiply_m_v(RTMatrix & m, RTVector & v);
-	RTMatrix RTMatrix::inverse();
+	RTMatrix inverse();
 	// transformation of direction vector (i.e., no translation)
 	static RTVector multiply_m_v_dir(RTMatrix & m, RTVector & vdir);
 	void swapRows(int i, int j);
